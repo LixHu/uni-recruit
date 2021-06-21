@@ -1,0 +1,33 @@
+.menu {
+	margin-top: 20rpx;
+	
+	.menu-item {
+		
+		.item-info {
+			text-align: center;
+		}
+	}
+}
+
+.product {
+	margin-top: 40rpx;
+	
+	.info {
+		.title {
+			font-weight: 600;
+			font-size: 40rpx;
+		}
+		.price {
+			text-align: right;
+		}
+	}
+	
+	.company {
+		padding-top: 20rpx;
+		
+		.title {
+			font-weight: 600;
+			font-size: 20rpx;
+		}
+	}
+}
