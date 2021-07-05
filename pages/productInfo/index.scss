@@ -1,0 +1,60 @@
+.content {
+	width: 100%;
+	margin-top: 20rpx;
+	padding: 0 20rpx;
+	
+	.title{
+		font-size: 46rpx;
+		font-weight: 400;
+	}
+	
+	.describe {
+		text-align: center;
+	}
+	
+	.company-card {
+		border: 2rpx solid #c8c9cc;
+		border-radius: 60rpx;
+		width: 80%;
+		padding: 40rpx;
+		display: flex;
+		position: relative;
+		left: calc(10%);
+        box-shadow: 4rpx 4rpx 4rpx #f4f4f5;
+		
+		.describe {
+			padding: 0 20rpx;
+			text-align: left;
+		}
+	}
+	
+	.bright {
+		
+	}
+	
+	.white {
+		height: 180rpx;
+	}
+	
+}
+.bottom-menu {
+	width: 100%;
+	position: fixed;
+	padding: 0;
+	bottom: 0;
+	background-color: #fff;
+	display: flex;
+	
+	.icon {
+		width: 80rpx;
+	}
+	
+	.send-btn-content {
+		text-align: right;
+		padding-left: 220rpx;
+		
+		.send-btn {
+			
+		}
+	}
+}

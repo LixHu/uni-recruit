@@ -1,0 +1,24 @@
+@charset "UTF-8";
+/**
+ * 下方引入的为uView UI的集成样式文件，为scss预处理器，其中包含了一些"u-"开头的自定义变量
+ * uView自定义的css类名和scss变量，均以"u-"开头，不会造成冲突，请放心使用 
+ */
+.user-info {
+  width: 100%;
+  height: 300rpx;
+  background-color: #2979ff;
+  padding: 20rpx;
+}
+.user-info .left-content {
+  text-align: left;
+  color: white;
+  position: relative;
+  top: 60rpx;
+}
+.user-info .avatar {
+  text-align: right;
+  position: relative;
+  top: 60rpx;
+  right: 50rpx;
+}
+

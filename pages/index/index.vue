@@ -10,7 +10,8 @@
 				></u-swiper>
 			</u-col>
 		</u-row>
-		<u-row class="margin-top-20 menu">
+		<view class="margin-top-20"></view>
+		<u-row class="menu">
 			<u-col span="3" class="menu-item">
 				<view class="item-info">
 					<u-avatar></u-avatar>
@@ -36,7 +37,9 @@
 				</view>
 			</u-col>
 		</u-row>
-		<u-row class="margin-top-20">
+		
+		<view class="margin-top-20"></view>
+		<u-row>
 			<u-col span="6">
 				<u-tabs :list="tabList" :current="current"></u-tabs>
 			</u-col>
@@ -47,87 +50,23 @@
 				</u-dropdown>
 			</u-col>
 		</u-row>
-		
-		<u-row class="margin-top-20">
-			<u-col span="12" class="product">
-				<u-row class="info">
-					<u-col span="8" class="title">店铺夏季实习生</u-col>
-					<u-col span="3" offset="1" class="price font-red">200/天</u-col>
-					<view class="introduction font-grey">
-						address | 5天/周 | 3个月
-					</view>
-				</u-row>
-				<view class="tags">
-					<u-tag text="可转正实习"></u-tag>
-					<u-tag text="五险一金"></u-tag>
-				</view>
-				<u-row class="company">
-					<u-col span="3">
-						<u-avatar></u-avatar>
-					</u-col>
-					<u-col span="8" offset="1">
-						<view class="title">实习僧内推助手</view>
-						<view class="introduction font-grey">A轮 | 互联网/游戏/软件 | 500人</view>
-					</u-col>
-				</u-row>
-			</u-col>
-			
-			<u-col span="12" class="product">
-				<u-row class="info">
-					<u-col span="8" class="title">店铺夏季实习生</u-col>
-					<u-col span="3" offset="1" class="price font-red">200/天</u-col>
-					<view class="introduction font-grey">
-						address | 5天/周 | 3个月
-					</view>
-				</u-row>
-				<view class="tags">
-					<u-tag text="可转正实习"></u-tag>
-					<u-tag text="五险一金"></u-tag>
-				</view>
-				<u-row class="company">
-					<u-col span="3">
-						<u-avatar></u-avatar>
-					</u-col>
-					<u-col span="8" offset="1">
-						<view class="title">实习僧内推助手</view>
-						<view class="introduction font-grey">A轮 | 互联网/游戏/软件 | 500人</view>
-					</u-col>
-				</u-row>
-			</u-col>
-			
-			<u-col span="12" class="product">
-				<u-row class="info">
-					<u-col span="8" class="title">店铺夏季实习生</u-col>
-					<u-col span="3" offset="1" class="price font-red">200/天</u-col>
-					<view class="introduction font-grey">
-						address | 5天/周 | 3个月
-					</view>
-				</u-row>
-				<view class="tags">
-					<u-tag text="可转正实习"></u-tag>
-					<u-tag text="五险一金"></u-tag>
-				</view>
-				<u-row class="company">
-					<u-col span="3">
-						<u-avatar></u-avatar>
-					</u-col>
-					<u-col span="8" offset="1">
-						<view class="title">实习僧内推助手</view>
-						<view class="introduction font-grey">A轮 | 互联网/游戏/软件 | 500人</view>
-					</u-col>
-				</u-row>
-			</u-col>
+		<u-row>
+			<positionList :goInfo="goInfo" :list="plist"></positionList>
 		</u-row>
-		
 	</view>
 </template>
 
 <script>
+import positionList from '../../components/postionList/positionList.vue'
 	export default {
+		components: {
+			positionList: positionList
+		},
 		data() {
 			return {
 				title: 'Hello',
 				world: 'world',
+				plist: [1],
 				list: [{
 					image: 'https://cdn.uviewui.com/uview/swiper/1.jpg'
 				},
@@ -173,11 +112,15 @@
 
 		},
 		methods: {
-
+			goInfo() {
+				uni.navigateTo({
+					url: '/pages/productInfo/index'
+				})
+			}
 		}
 	}
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
 	@import './index.scss';
 </style>

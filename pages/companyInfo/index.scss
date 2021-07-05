@@ -1,0 +1,41 @@
+.head-content {
+  width: 100%;
+  text-align: center;
+
+  .company-card {
+    width: 90%;
+    height: 260rpx;
+    border: 1px solid #c8c9cc;
+    border-radius: 60rpx;
+    box-shadow: 4rpx 4rpx 4rpx #f4f4f5;
+    position: relative;
+    left: calc(50% - 330rpx);
+    padding: 20rpx;
+
+    .avatar {
+      position: relative;
+      top: 60rpx;
+      left: 30rpx;
+    }
+    .company-info {
+      position: relative;
+      top: 60rpx;
+    }
+  }
+}
+
+.info {
+  padding: 20rpx;
+  .company-describe {
+    padding: 20rpx;
+    text-indent: 2em;
+  }
+
+}
+
+.product-list {
+  padding: 20rpx;
+  width: 100%;
+  height: 100%;
+
+}
