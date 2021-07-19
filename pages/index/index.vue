@@ -37,7 +37,20 @@
 				</view>
 			</u-col>
 		</u-row>
-		
+
+    <view class="margin-top-20">
+      <view class="padding-20">
+        <u-row>
+          <u-col span="6">
+            <view class="font-weight">求职意向 ></view>
+          </u-col>
+          <u-col span="6">
+            <u-search placeholder="搜职位" v-model="keyword"></u-search>
+          </u-col>
+        </u-row>
+      </view>
+    </view>
+
 		<view class="margin-top-20"></view>
 		<u-row>
 			<u-col span="6">

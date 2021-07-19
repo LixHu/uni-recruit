@@ -10,21 +10,4 @@
 .menu .menu-item .item-info {
   text-align: center;
 }
-.product {
-  margin-top: 40rpx;
-}
-.product .info .title {
-  font-weight: 600;
-  font-size: 40rpx;
-}
-.product .info .price {
-  text-align: right;
-}
-.product .company .title {
-  font-weight: 600;
-  font-size: 20rpx;
-}
-.tags {
-  margin: 20rpx 0;
-}
 

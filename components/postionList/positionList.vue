@@ -15,8 +15,12 @@
 				
 				</u-row>
 				<view class="tags">
-					<u-tag text="可转正实习"></u-tag>
-					<u-tag text="五险一金"></u-tag>
+          <view class="tag-item">
+            <u-tag text="可转正实习"></u-tag>
+          </view>
+          <view class="tag-item">
+            <u-tag text="无限一斤"></u-tag>
+          </view>
 				</view>
 				<u-row class="company">
 					<u-col span="1">
@@ -53,12 +57,20 @@
 			text-align: right;
 		}
 	}
-	
+
+  .tags {
+    display: flex;
+    justify-content: flex-start;
+
+    .tag-item:nth-child(n+1) {
+      margin: 0 10rpx;
+    }
+  }
 	.company {
 		
 		.title {
-			font-weight: 600;
-			font-size: 20rpx;
+			font-weight: 400;
+      font-size: 30rpx;
 		}
 	}
 }
