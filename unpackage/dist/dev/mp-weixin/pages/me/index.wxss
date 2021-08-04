@@ -21,4 +21,9 @@
   top: 60rpx;
   right: 50rpx;
 }
+.user-info .avatar .avatar-button button {
+  border: none;
+  color: transparent;
+  background-color: transparent;
+}
 

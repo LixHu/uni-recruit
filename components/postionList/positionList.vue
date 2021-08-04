@@ -1,36 +1,34 @@
 <template>
 	<view>
-		<view class="margin-top-20" @click="goInfo" v-for="item in list">
-			<u-col span="12" class="product">
+		<view class="margin-top-20 product" @click="goInfo(item.id)" v-for="(item, index) in list" :key="index" >
+			<u-col span="12">
 				<u-row class="info">
-					<u-col span="6" class="title">店铺夏季实习生</u-col>
+					<u-col span="6" class="title">{{ item.postion_name }}</u-col>
 					<u-col span="5" offset="1">
 						<view class="price font-red">
-							200/天
+							{{ item.price }}/{{ item.price_unit === 1 ? '天' : ( item.price_unit === 2 ? '月' : '年' ) }}
 						</view>
 						<view class="introduction font-grey font-size-12">
-							address | 5天/周 | 3个月
+							{{`${item.province}`}} | {{ item.work_time }}天/周 | {{ item.internship }}{{ item.internship_unit === 1 ? '天' : '个月'}}
 						</view>
 					</u-col>
 				
 				</u-row>
 				<view class="tags">
-          <view class="tag-item">
-            <u-tag text="可转正实习"></u-tag>
-          </view>
-          <view class="tag-item">
-            <u-tag text="无限一斤"></u-tag>
-          </view>
+				  <view class="tag-item" v-for="tags in item.tags">
+					<u-tag :text="tags"></u-tag>
+				  </view>
 				</view>
 				<u-row class="company">
 					<u-col span="1">
-						<u-avatar></u-avatar>
+						<u-avatar :src="item.company.avatar"></u-avatar>
 					</u-col>
 					<u-col span="7" offset="1">
-						<view class="title">实习僧内推助手</view>
-						<view class="introduction font-grey">A轮 | 互联网/游戏/软件 | 500人</view>
+						<view class="title">{{ item.company.title }}</view>
+						<view class="introduction font-grey">{{ item.company.financing }} | {{ item.company.category.title }} | {{ item.company.people_num }}人</view>
 					</u-col>
 				</u-row>
+				<u-gap height="5" bg-color="#a0cfff" class="gap" v-if="list.length - 1 !== index"></u-gap>
 			</u-col>
 		</view>
 	</view>
@@ -45,15 +43,22 @@
 </script>
 
 <style lang="scss">
+.gap {
+	position: relative;
+	top: 20rpx;
+}
 .product {
-	margin-top: 40rpx;
-	
+	height: 250rpx;
 	.info {
 		.title {
 			font-weight: 600;
 			font-size: 40rpx;
 		}
 		.price {
+			text-align: right;
+		}
+		
+		.introduction {
 			text-align: right;
 		}
 	}
@@ -67,10 +72,16 @@
     }
   }
 	.company {
+		position: relative;
+		top: 20rpx;
 		
 		.title {
 			font-weight: 400;
-      font-size: 30rpx;
+			font-size: 30rpx;
+		}
+		
+		.introduction {
+			text-align: left;
 		}
 	}
 }

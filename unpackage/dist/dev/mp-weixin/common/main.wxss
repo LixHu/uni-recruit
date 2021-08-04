@@ -3294,6 +3294,9 @@ u-dropdown {
 
 
 /*每个页面公共css */
+.hidden {
+  display: none;
+}
 .margin-top-20 {
   margin-top: 20rpx;
 }
@@ -3326,6 +3329,9 @@ u-dropdown {
 }
 .font-size-20 {
   font-size: 40rpx;
+}
+.text-right {
+  text-align: right;
 }
 .font-weight {
   font-weight: 800;

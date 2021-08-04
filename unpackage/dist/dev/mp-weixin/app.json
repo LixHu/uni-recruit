@@ -1,9 +1,11 @@
 {
   "pages": [
+    "pages/workbench/index",
     "pages/index/index",
     "pages/productInfo/index",
     "pages/me/index",
-    "pages/companyInfo/index"
+    "pages/companyInfo/index",
+    "pages/Appendix/index"
   ],
   "subPackages": [],
   "window": {
@@ -14,31 +16,30 @@
   },
   "tabBar": {
     "color": "#909399",
-    "selectedColor": "#303133",
+    "selectedColor": "#2F88FF",
     "borderStyle": "black",
     "backgroundColor": "#ffffff",
     "list": [
       {
-        "pagePath": "pages/index/index",
-        "iconPath": "static/index.png",
-        "selectedIconPath": "static/index-selected.png",
-        "text": "机会"
+        "pagePath": "pages/workbench/index",
+        "iconPath": "static/workbench.png",
+        "selectedIconPath": "static/workbench_select.png",
+        "text": "招聘会"
       },
       {
         "pagePath": "pages/index/index",
-        "iconPath": "static/center.png",
-        "selectedIconPath": "static/center-selected.png",
-        "text": "校招"
+        "iconPath": "static/handbag.png",
+        "selectedIconPath": "static/handbag_select.png",
+        "text": "职位"
       },
       {
         "pagePath": "pages/me/index",
-        "iconPath": "static/center.png",
-        "selectedIconPath": "static/center-selected.png",
+        "iconPath": "static/user.png",
+        "selectedIconPath": "static/user_select.png",
         "text": "我的"
       }
     ]
   },
   "permission": {},
-  "usingComponents": {},
-  "sitemapLocation": "sitemap.json"
+  "usingComponents": {}
 }

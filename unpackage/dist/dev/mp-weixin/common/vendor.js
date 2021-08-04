@@ -10586,6 +10586,289 @@ Object.defineProperty(exports, "__esModule", { value: true });exports.default = 
   sticky: 970,
   indexListSticky: 965 };exports.default = _default;
 
+/***/ }),
+/* 40 */
+/*!**********************************************************!*\
+  !*** /Users/liahu/Documents/mycode/recruit/api/index.js ***!
+  \**********************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var _user = _interopRequireDefault(__webpack_require__(/*! ./user.js */ 41));
+var _company = _interopRequireDefault(__webpack_require__(/*! ./company.js */ 42));
+var _position = _interopRequireDefault(__webpack_require__(/*! ./position.js */ 43));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}function _classCallCheck(instance, Constructor) {if (!(instance instanceof Constructor)) {throw new TypeError("Cannot call a class as a function");}}var
+
+api =
+
+function api(_api) {_classCallCheck(this, api);
+  this.user = new _user.default(_api);
+  this.company = new _company.default(_api);
+  this.position = new _position.default(_api);
+};exports.default = api;
+
+/***/ }),
+/* 41 */
+/*!*********************************************************!*\
+  !*** /Users/liahu/Documents/mycode/recruit/api/user.js ***!
+  \*********************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;function _classCallCheck(instance, Constructor) {if (!(instance instanceof Constructor)) {throw new TypeError("Cannot call a class as a function");}}function _defineProperties(target, props) {for (var i = 0; i < props.length; i++) {var descriptor = props[i];descriptor.enumerable = descriptor.enumerable || false;descriptor.configurable = true;if ("value" in descriptor) descriptor.writable = true;Object.defineProperty(target, descriptor.key, descriptor);}}function _createClass(Constructor, protoProps, staticProps) {if (protoProps) _defineProperties(Constructor.prototype, protoProps);if (staticProps) _defineProperties(Constructor, staticProps);return Constructor;}var User = /*#__PURE__*/function () {
+
+  function User(url) {_classCallCheck(this, User);
+    this.api = url;
+    this.access_token = uni.getStorageSync('access_token');
+    console.log(this.access_token);
+  }_createClass(User, [{ key: "login", value: function login(
+
+    code) {
+      var data = { 'code': code };
+      var that = this;
+      return new Promise(function (resolve, reject) {
+        uni.request({
+          url: "".concat(that.api, "/api/v1/login"),
+          method: "POST",
+          data: data,
+          success: function success(res) {
+            resolve(res);
+          },
+          fail: function fail(e) {
+            reject(e);
+          } });
+
+      });
+    } }, { key: "getUserInfo", value: function getUserInfo(
+
+    access_token, userInfo) {
+      var data = userInfo;
+      var that = this;
+      return new Promise(function (resolve, reject) {
+        uni.request({
+          url: "".concat(that.api, "/api/v1/user"),
+          method: "POST",
+          header: { 'Authorization': "Bearer ".concat(access_token) },
+          data: data,
+          success: function success(res) {
+            resolve(res);
+          },
+          fail: function fail(e) {
+            reject(e);
+          } });
+
+      });
+    } }, { key: "getResumeList", value: function getResumeList()
+
+    {
+      var that = this;
+      console.log(that.access_token);
+      return new Promise(function (resolve, reject) {
+        uni.request({
+          url: "".concat(that.api, "/api/v1/user/resume"),
+          method: "GET",
+          header: { 'Authorization': "Bearer ".concat(that.access_token) },
+          success: function success(res) {
+            that.handleData(res);
+            resolve(res);
+          },
+          fail: function fail(e) {
+            reject(e);
+          } });
+
+      });
+    } }, { key: "handleData", value: function handleData(
+
+    data) {
+      if (data.statusCode !== 200) {
+        if (data.statusCode === 504) {
+          var that = this;
+          uni.getProvider({
+            service: 'oauth',
+            success: function success(res) {
+              if (~res.provider.indexOf('weixin')) {
+                uni.login({
+                  provider: 'weixin',
+                  success: function success(loginRes) {
+                    var code = loginRes.code;
+                    uni.getUserInfo({
+                      provider: 'weixin',
+                      success: function success(userInfoRes) {
+                        if (code !== undefined) {
+                          that.login(code).then(function (res) {
+                            console.log(res);
+                            if (res.statusCode === 200) {var
+                              _data = res.data;
+                              uni.setStorageSync('access_token', _data.access_token);
+
+                            }
+                          }).catch(function (e) {
+                            console.log(e);
+                          });
+                        }
+                      } });
+
+                  } });
+
+              }
+            } });
+
+        }
+      }
+    } }, { key: "sendResume", value: function sendResume(
+
+    data) {
+      var that = this;
+      console.log(that.access_token);
+      return new Promise(function (resolve, reject) {
+        uni.request({
+          url: "".concat(that.api, "/api/v1/user/resume/send"),
+          method: "POST",
+          header: { 'Authorization': "Bearer ".concat(that.access_token) },
+          data: data,
+          success: function success(res) {
+            resolve(res);
+          },
+          fail: function fail(e) {
+            reject(e);
+          } });
+
+      });
+    } }, { key: "delResume", value: function delResume(
+    id) {
+      var that = this;
+      console.log(that.access_token);
+      return new Promise(function (resolve, reject) {
+        uni.request({
+          url: "".concat(that.api, "/api/v1/user/resume/").concat(id),
+          method: "DELETE",
+          header: { 'Authorization': "Bearer ".concat(that.access_token) },
+          success: function success(res) {
+            resolve(res);
+          },
+          fail: function fail(e) {
+            reject(e);
+          } });
+
+      });
+    } }, { key: "uploadResume", value: function uploadResume(
+    file, title) {
+      var data = file;
+      var that = this;
+      console.log(that.access_token);
+      return new Promise(function (reslove, reject) {
+        uni.uploadFile({
+          url: "".concat(that.api, "/api/v1/user/resume"),
+          filePath: file[0].path,
+          name: 'file',
+          header: { 'Authorization': "Bearer ".concat(that.access_token) },
+          formData: { title: title },
+          success: function success(res) {
+            reslove(res);
+          },
+          fail: function fail(e) {
+            reject(e);
+          } });
+
+      });
+    } }]);return User;}();exports.default = User;
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
+
+/***/ }),
+/* 42 */
+/*!************************************************************!*\
+  !*** /Users/liahu/Documents/mycode/recruit/api/company.js ***!
+  \************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;function _classCallCheck(instance, Constructor) {if (!(instance instanceof Constructor)) {throw new TypeError("Cannot call a class as a function");}}function _defineProperties(target, props) {for (var i = 0; i < props.length; i++) {var descriptor = props[i];descriptor.enumerable = descriptor.enumerable || false;descriptor.configurable = true;if ("value" in descriptor) descriptor.writable = true;Object.defineProperty(target, descriptor.key, descriptor);}}function _createClass(Constructor, protoProps, staticProps) {if (protoProps) _defineProperties(Constructor.prototype, protoProps);if (staticProps) _defineProperties(Constructor, staticProps);return Constructor;}var
+Company = /*#__PURE__*/function () {
+  function Company(url) {_classCallCheck(this, Company);
+    this.api = url;
+  }_createClass(Company, [{ key: "getPositionList", value: function getPositionList(
+
+    data) {
+      var that = this;
+      return new Promise(function (resolve, reject) {
+        uni.request({
+          url: "".concat(that.api, "/api/v1/position"),
+          method: "GET",
+          data: data,
+          success: function success(res) {
+            resolve(res);
+          } });
+
+      });
+    } }, { key: "getPositionInfo", value: function getPositionInfo(
+
+    id) {
+      var that = this;
+      return new Promise(function (resolve, reject) {
+        uni.request({
+          url: "".concat(that.api, "/api/v1/position/").concat(id),
+          method: "GET",
+          success: function success(res) {
+            resolve(res);
+          },
+          fail: function fail(e) {
+            reject(e);
+          } });
+
+      });
+    } }, { key: "getCompanyInfo", value: function getCompanyInfo(
+
+    id) {
+      var that = this;
+      return new Promise(function (resolve, reject) {
+        uni.request({
+          url: "".concat(that.api, "/api/v1/company/").concat(id),
+          method: "GET",
+          success: function success(res) {
+            resolve(res);
+          },
+          fail: function fail(e) {
+            reject(e);
+          } });
+
+      });
+    } }]);return Company;}();exports.default = Company;
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
+
+/***/ }),
+/* 43 */
+/*!*************************************************************!*\
+  !*** /Users/liahu/Documents/mycode/recruit/api/position.js ***!
+  \*************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;function _classCallCheck(instance, Constructor) {if (!(instance instanceof Constructor)) {throw new TypeError("Cannot call a class as a function");}}function _defineProperties(target, props) {for (var i = 0; i < props.length; i++) {var descriptor = props[i];descriptor.enumerable = descriptor.enumerable || false;descriptor.configurable = true;if ("value" in descriptor) descriptor.writable = true;Object.defineProperty(target, descriptor.key, descriptor);}}function _createClass(Constructor, protoProps, staticProps) {if (protoProps) _defineProperties(Constructor.prototype, protoProps);if (staticProps) _defineProperties(Constructor, staticProps);return Constructor;}var
+Position = /*#__PURE__*/function () {
+  function Position(url) {_classCallCheck(this, Position);
+    this.api = url;
+  }_createClass(Position, [{ key: "getPositionCategory", value: function getPositionCategory()
+
+    {
+      var that = this;
+      return new Promise(function (resolve, reject) {
+        uni.request({
+          url: "".concat(that.api, "/api/v1/category/position"),
+          method: "GET",
+          success: function success(res) {
+            resolve(res);
+          },
+          fail: function fail(e) {
+            reject(e);
+          } });
+
+      });
+    } }]);return Position;}();exports.default = Position;
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
+
 /***/ })
 ]]);
 //# sourceMappingURL=../../.sourcemap/mp-weixin/common/vendor.js.map

@@ -16,5 +16,12 @@
 		position: relative;
 		top: 60rpx;
 		right: 50rpx;
+		
+		.avatar-button button {
+			border: none;
+			color: transparent;
+			background-color: transparent;
+		}
 	}
+	
 }

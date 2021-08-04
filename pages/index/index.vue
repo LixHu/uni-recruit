@@ -10,34 +10,6 @@
 				></u-swiper>
 			</u-col>
 		</u-row>
-		<view class="margin-top-20"></view>
-		<u-row class="menu">
-			<u-col span="3" class="menu-item">
-				<view class="item-info">
-					<u-avatar></u-avatar>
-					<view>校招</view>
-				</view>
-			</u-col>
-			<u-col span="3" class="menu-item">
-				<view class="item-info">
-					<u-avatar></u-avatar>
-					<view>校招</view>
-				</view>
-			</u-col>
-			<u-col span="3" class="menu-item">
-				<view class="item-info">
-					<u-avatar></u-avatar>
-					<view>校招</view>
-				</view>
-			</u-col>
-			<u-col span="3" class="menu-item">
-				<view class="item-info">
-					<u-avatar></u-avatar>
-					<view>校招</view>
-				</view>
-			</u-col>
-		</u-row>
-
     <view class="margin-top-20">
       <view class="padding-20">
         <u-row>
@@ -79,7 +51,7 @@ import positionList from '../../components/postionList/positionList.vue'
 			return {
 				title: 'Hello',
 				world: 'world',
-				plist: [1],
+				plist: [],
 				list: [{
 					image: 'https://cdn.uviewui.com/uview/swiper/1.jpg'
 				},
@@ -122,12 +94,23 @@ import positionList from '../../components/postionList/positionList.vue'
 			}
 		},
 		onLoad() {
-
+			this.getPositionList()
 		},
 		methods: {
-			goInfo() {
+			goInfo(id) {
+				console.log(id)
 				uni.navigateTo({
-					url: '/pages/productInfo/index'
+					url: `/pages/productInfo/index?id=${id}`
+				})
+			},
+			getPositionList() {
+				this.api.company.getPositionList().then((res) => {
+					if(res.statusCode === 200) {
+						this.plist = res.data.data.data
+						console.log(this.plist)
+					}
+				}).catch((e) => {
+					console.log(e)
 				})
 			}
 		}
