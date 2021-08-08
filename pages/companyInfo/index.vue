@@ -35,7 +35,7 @@
         <view class="padding-20">{{ companyInfo.url }}</view>
       </view>
       <view>
-        <view class="font-weight font-size-20">工商信息</view>
+        <!-- <view class="font-weight font-size-20">工商信息</view>
         <view>
           <u-table>
             <u-tr>
@@ -59,7 +59,7 @@
               <u-td>{{ companyInfo.capital }}</u-td>
             </u-tr>
           </u-table>
-        </view>
+        </view> -->
       </view>
     </view>
 

@@ -10,7 +10,8 @@ import uView from 'uview-ui'
 
 import Api from 'api/index.js'
 Vue.use(uView);
-const url = 'http://recruit-back.test'
+// const url = 'http://recruit-back.test'
+const url = 'https://yikexz.cn'
 const api = new Api(url)
 Vue.prototype.api = api
 const app = new Vue({

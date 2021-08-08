@@ -28,7 +28,7 @@
 						<view class="introduction font-grey">{{ item.company.financing }} | {{ item.company.category.title }} | {{ item.company.people_num }}人</view>
 					</u-col>
 				</u-row>
-				<u-gap height="5" bg-color="#a0cfff" class="gap" v-if="list.length - 1 !== index"></u-gap>
+				<u-gap height="5" bg-color="#f4f4f5" class="gap" v-if="list.length - 1 !== index"></u-gap>
 			</u-col>
 		</view>
 	</view>
